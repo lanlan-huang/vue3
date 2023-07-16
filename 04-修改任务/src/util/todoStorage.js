@@ -39,7 +39,6 @@ export function filter(todos,visibility = 'all') {
         return todos.filter((it) => !it.completed);
     }
     else if(visibility === 'completed') {
-        console.log(todos.filter((it) => it.completed),'todos.filter((it) => it.completed)')
         return todos.filter((it) => it.completed);
     }
     throw new Error ("invalid visibility value");
