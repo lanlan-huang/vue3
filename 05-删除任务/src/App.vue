@@ -8,20 +8,12 @@
           @keyup.enter="addTodo" />
       </header>
       <section class="main">
-        <input 
-        id="toggle-all" 
-        class="toggle-all" 
-        type="checkbox"
-        :checked="allDoneRef"
-        @input="setAllChecked($event.target.checked)"
-        />
+        <input id="toggle-all" class="toggle-all" type="checkbox" :checked="allDoneRef"
+          @input="setAllChecked($event.target.checked)" />
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
-          <li 
-          class="todo" 
-          v-for="todo in filteredTodosRef" 
-          :key="todo.id" 
-          :class="{ completed: todo.completed,editing:todo === editingTodoRef }">
+          <li class="todo" v-for="todo in filteredTodosRef" :key="todo.id"
+            :class="{ completed: todo.completed, editing: todo === editingTodoRef }">
             <div class="view">
               <input class="toggle" type="checkbox" v-model="todo.completed" />
               <!-- @dblclick鼠标左键双击事件 -->
@@ -29,14 +21,8 @@
               <button @click="remove(todo)" class="destroy"></button>
             </div>
             <!-- 编辑状态 -->
-            <input 
-            class="edit" 
-            type="text" 
-            v-model="todo.title"
-            @blur="doneEdit(todo)"
-            @keyup.enter="doneEdit(todo)"
-            @keyup.escape="cancelEdit(todo)"
-            />
+            <input class="edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)"
+              @keyup.escape="cancelEdit(todo)" />
           </li>
         </ul>
       </section>
@@ -50,7 +36,7 @@
           <li><a href="#/active" :class="{ selected: visibilityRef === 'active' }">Active</a></li>
           <li><a href="#/completed" :class="{ selected: visibilityRef === 'completed' }">Completed</a></li>
         </ul>
-        <button  @click="removeCompleted" class="clear-completed" v-show="completedRef">
+        <button @click="removeCompleted" class="clear-completed" v-show="completedRef">
           Clear completed
         </button>
       </footer>
@@ -67,6 +53,7 @@ import useRemoveTodo from './composition/useRemoveTodo';
 export default {
   setup() {
     const { todosRef } = useTodoList();
+
     return {
       todosRef,
       ...useNewTodo(todosRef),
@@ -74,6 +61,7 @@ export default {
       ...useEditTodo(todosRef),
       ...useRemoveTodo(todosRef),
     }
+
   }
 }
 </script>
